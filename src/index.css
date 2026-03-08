@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-navy: #1B2A4A;
+  --color-navy-light: #2A3F6A;
+  --color-navy-dark: #111D35;
+  --color-saffron: #F59E0B;
+  --color-saffron-light: #FCD34D;
+  --color-saffron-dark: #D97706;
+  --color-cream: #FFF8F0;
+  --color-cream-dark: #FEF0DC;
+  --color-sage: #059669;
+  --color-sage-light: #34D399;
+  --color-midnight: #0F172A;
+  --color-midnight-card: #1E293B;
+  --color-midnight-border: #334155;
+
+  --font-family-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-family-body: 'Source Sans 3', sans-serif;
+}
+
+html {
+  font-family: var(--font-family-body);
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-navy);
+  min-height: 100vh;
+}
+
+.dark body {
+  background-color: var(--color-midnight);
+  color: #E2E8F0;
+}
+
+/* Rangoli decorative pattern */
+.rangoli-pattern {
+  background-image: radial-gradient(circle at 25% 25%, rgba(245, 158, 11, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(5, 150, 105, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(27, 42, 74, 0.02) 0%, transparent 70%);
+}
+
+/* Ashoka Chakra spinner */
+@keyframes chakra-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.chakra-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(27, 42, 74, 0.1);
+  border-top-color: var(--color-navy);
+  border-radius: 50%;
+  animation: chakra-spin 0.8s linear infinite;
+  position: relative;
+}
+
+.chakra-spinner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--color-saffron);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dark .chakra-spinner {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-top-color: var(--color-saffron);
+}
+
+/* Stagger animations */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(27, 42, 74, 0.2); border-radius: 3px; }
+.dark ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); }
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(27, 42, 74, 0.1);
+}
+.dark .card-hover:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
