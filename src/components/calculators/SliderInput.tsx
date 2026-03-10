@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 interface SliderInputProps {
   label: string
   value: number
@@ -8,7 +10,7 @@ interface SliderInputProps {
   onChange: (v: number) => void
 }
 
-export function SliderInput({ label, value, min, max, step, formatValue, onChange }: SliderInputProps) {
+export const SliderInput = memo(function SliderInput({ label, value, min, max, step, formatValue, onChange }: SliderInputProps) {
   const display = formatValue ? formatValue(value) : value.toString()
 
   return (
@@ -31,4 +33,4 @@ export function SliderInput({ label, value, min, max, step, formatValue, onChang
       />
     </div>
   )
-}
+})

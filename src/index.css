@@ -101,7 +101,7 @@ body {
 .stagger-6 { animation-delay: 0.3s; }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(27, 42, 74, 0.2); border-radius: 3px; }
 .dark ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); }
@@ -111,9 +111,81 @@ body {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .card-hover:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.01);
   box-shadow: 0 8px 25px rgba(27, 42, 74, 0.1);
 }
 .dark .card-hover:hover {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+.card-hover:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-saffron);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scroll snap container for horizontal scroll sections */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-snap-x > * {
+  scroll-snap-align: start;
+}
+
+/* Hide scrollbar for horizontal scroll on mobile */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Improved slider touch targets */
+input[type="range"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-saffron);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  border: 3px solid white;
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-saffron);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  border: 3px solid white;
+}
+
+/* Mobile nav active indicator */
+@keyframes nav-tap {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+.nav-tap:active {
+  animation: nav-tap 0.15s ease-out;
 }

@@ -1,9 +1,11 @@
+import { memo } from 'react'
+
 interface PageHeaderProps {
   title: string
   description?: string
 }
 
-export function PageHeader({ title, description }: PageHeaderProps) {
+export const PageHeader = memo(function PageHeader({ title, description }: PageHeaderProps) {
   return (
     <div className="mb-8">
       <h1 className="font-heading text-2xl md:text-3xl font-bold text-navy dark:text-white">
@@ -16,4 +18,4 @@ export function PageHeader({ title, description }: PageHeaderProps) {
       )}
     </div>
   )
-}
+})

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { cn } from '@/lib/utils'
 
 interface SummaryCardProps {
@@ -6,7 +7,7 @@ interface SummaryCardProps {
   accent?: boolean
 }
 
-export function SummaryCard({ label, value, accent }: SummaryCardProps) {
+export const SummaryCard = memo(function SummaryCard({ label, value, accent }: SummaryCardProps) {
   return (
     <div className={cn(
       'p-4 rounded-xl border',
@@ -23,4 +24,4 @@ export function SummaryCard({ label, value, accent }: SummaryCardProps) {
       </div>
     </div>
   )
-}
+})

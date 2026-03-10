@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { MessageCircle } from 'lucide-react'
+import { MessageCircle, ArrowDown } from 'lucide-react'
 import { useChat } from '@/hooks/useChat'
 import { ChatMessage } from '@/components/chat/ChatMessage'
 import { ChatInput } from '@/components/chat/ChatInput'
@@ -9,9 +9,11 @@ import { SuggestedChips } from '@/components/chat/SuggestedChips'
 export function ChatPage() {
   const { messages, isLoading, error, sendMessage } = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [searchParams, setSearchParams] = useSearchParams()
   const initialQuestion = searchParams.get('q')
   const sentInitial = useRef(false)
+  const [showScrollBtn, setShowScrollBtn] = useState(false)
 
   useEffect(() => {
     if (initialQuestion && !sentInitial.current && messages.length === 0) {
@@ -25,12 +27,27 @@ export function ChatPage() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
+  const handleScroll = useCallback(() => {
+    const el = scrollContainerRef.current
+    if (!el) return
+    const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight
+    setShowScrollBtn(distanceFromBottom > 200)
+  }, [])
+
+  const scrollToBottom = useCallback(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [])
+
   return (
-    <div className="flex flex-col h-[calc(100vh-0px)] md:h-screen">
+    <div className="flex flex-col h-[calc(100dvh-0px)] md:h-screen">
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 md:px-8 pt-6">
+      <div
+        ref={scrollContainerRef}
+        onScroll={handleScroll}
+        className="flex-1 overflow-y-auto px-4 md:px-8 pt-6 relative"
+      >
         {messages.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-center max-w-md mx-auto">
+          <div className="flex flex-col items-center justify-center h-full text-center max-w-md mx-auto px-4">
             <div className="w-16 h-16 rounded-full bg-saffron/10 flex items-center justify-center mb-4">
               <MessageCircle className="w-8 h-8 text-saffron" />
             </div>
@@ -68,6 +85,18 @@ export function ChatPage() {
         )}
       </div>
 
+      {/* Scroll to bottom button */}
+      {showScrollBtn && messages.length > 0 && (
+        <div className="flex justify-center -mt-12 relative z-10">
+          <button
+            onClick={scrollToBottom}
+            className="p-2 rounded-full bg-white dark:bg-midnight-card border border-navy/10 dark:border-midnight-border shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95"
+          >
+            <ArrowDown className="w-4 h-4 text-navy/60 dark:text-white/50" />
+          </button>
+        </div>
+      )}
+
       {/* Error */}
       {error && (
         <div className="mx-4 md:mx-8 mb-2 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 text-sm text-red-600 dark:text-red-400">
@@ -82,8 +111,8 @@ export function ChatPage() {
         </div>
       )}
 
-      {/* Input */}
-      <div className="px-4 md:px-8 pb-4 pt-2 max-w-3xl mx-auto w-full">
+      {/* Input - safe area padding for mobile keyboard */}
+      <div className="px-4 md:px-8 pb-[max(env(safe-area-inset-bottom),16px)] md:pb-4 pt-2 max-w-3xl mx-auto w-full">
         <ChatInput onSend={sendMessage} disabled={isLoading} />
       </div>
     </div>

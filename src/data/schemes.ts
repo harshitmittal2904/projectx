@@ -624,6 +624,257 @@ export const schemes: Scheme[] = [
     officialPortalUrl: 'https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx',
     lastUpdated: '2025-01-15',
   },
+  {
+    id: 'kvp',
+    name: 'KVP',
+    nameHindi: 'किसान विकास पत्र',
+    fullName: 'Kisan Vikas Patra',
+    tagline: 'Double your money with guaranteed returns from the government',
+    icon: 'Sprout',
+    color: '#16A34A',
+    interestRate: {
+      current: 7.5,
+      asOf: 'Q4 FY2024-25',
+      historical: [
+        { year: '2023-24', rate: 7.5 },
+        { year: '2022-23', rate: 7.2 },
+        { year: '2021-22', rate: 6.9 },
+      ],
+    },
+    minInvestment: 1000,
+    maxInvestment: null,
+    lockInYears: 2.5,
+    maturityYears: 9.58,
+    riskLevel: 'low',
+    taxBenefit: 'none',
+    section80CLimit: null,
+    eligibility: {
+      minAge: 18,
+      maxAge: null,
+      residency: 'indian-citizen',
+      gender: 'any',
+      category: 'Any Indian Resident aged 18+',
+    },
+    description:
+      'KVP is a government savings certificate that doubles your money in approximately 115 months (9 years 7 months) at the current interest rate. It is available at post offices and select banks, offering guaranteed compounding returns with no maximum investment limit.',
+    benefits: [
+      'Doubles your investment in ~115 months at current rate',
+      'Government-backed — zero default risk',
+      'No maximum investment limit',
+      'Can be transferred between persons',
+      'Nomination facility available',
+      'Can be pledged as collateral for loans',
+      'Available at post offices and select banks',
+    ],
+    howToOpen: [
+      'Visit any post office or authorized bank',
+      'Fill KVP purchase form',
+      'Submit KYC documents (Aadhaar, PAN)',
+      'Make investment in multiples of ₹1,000',
+      'PAN mandatory for investments above ₹50,000',
+      'KVP certificate is issued',
+    ],
+    requiredDocuments: ['Aadhaar Card', 'PAN Card (mandatory for investments above ₹50,000)', 'Address proof', 'Photographs'],
+    withdrawalRules: [
+      'Lock-in period: 30 months (2.5 years) — no withdrawal before this',
+      'After 30 months: Can be encashed at post office/bank with penalty',
+      'Maturity: ~115 months — investment doubles',
+      'Premature encashment: After 30 months with reduced returns',
+      'On death of holder: Can be encashed anytime by nominee/legal heir',
+      'Can be transferred between persons or between post offices',
+    ],
+    taxImplications: {
+      contribution: 'No deduction under Section 80C',
+      interest: 'Interest is taxable as per income slab',
+      maturity: 'Maturity amount is taxable (interest component)',
+      regime: 'both',
+    },
+    faqs: [
+      {
+        question: 'How long does it take for KVP to double my money?',
+        answer:
+          'At the current interest rate of 7.5%, KVP doubles your money in approximately 115 months (9 years and 7 months).',
+      },
+      {
+        question: 'Can I buy KVP for my minor child?',
+        answer:
+          'Yes, a guardian can purchase KVP on behalf of a minor. The certificate is issued in the name of the minor with the guardian mentioned.',
+      },
+      {
+        question: 'Is there any tax benefit for investing in KVP?',
+        answer:
+          'No, KVP does not qualify for deduction under Section 80C. The interest earned is also fully taxable as per your income slab.',
+      },
+    ],
+    officialPortalUrl: 'https://www.indiapost.gov.in',
+    lastUpdated: '2025-01-15',
+  },
+  {
+    id: 'pomis',
+    name: 'POMIS',
+    nameHindi: 'डाकघर मासिक आय योजना',
+    fullName: 'Post Office Monthly Income Scheme',
+    tagline: 'Earn guaranteed monthly income from your savings',
+    icon: 'Wallet',
+    color: '#7C3AED',
+    interestRate: {
+      current: 7.4,
+      asOf: 'Q4 FY2024-25',
+      historical: [
+        { year: '2023-24', rate: 7.4 },
+        { year: '2022-23', rate: 7.1 },
+        { year: '2021-22', rate: 6.6 },
+      ],
+    },
+    minInvestment: 1000,
+    maxInvestment: 900000,
+    lockInYears: 5,
+    maturityYears: 5,
+    riskLevel: 'low',
+    taxBenefit: 'none',
+    section80CLimit: null,
+    eligibility: {
+      minAge: 18,
+      maxAge: null,
+      residency: 'indian-citizen',
+      gender: 'any',
+      category: 'Any Indian Resident aged 18+ (max ₹9L single, ₹15L joint)',
+    },
+    description:
+      'POMIS is a post office savings scheme that provides guaranteed monthly income through interest payouts. It is ideal for retirees and anyone seeking regular monthly income from a lump sum investment with government-backed safety.',
+    benefits: [
+      'Guaranteed monthly income — interest paid every month',
+      'Government-backed — zero default risk',
+      'Ideal for retirees needing regular income',
+      'Joint account allows up to ₹15 lakh investment',
+      'Simple and hassle-free — available at all post offices',
+      'Can open multiple accounts (within overall limit)',
+    ],
+    howToOpen: [
+      'Visit any post office',
+      'Fill POMIS account opening form',
+      'Submit KYC documents (Aadhaar, PAN)',
+      'Make lump sum deposit (min ₹1,000, max ₹9L single / ₹15L joint)',
+      'Link savings account for monthly interest credit',
+      'Interest is auto-credited monthly to linked savings account',
+    ],
+    requiredDocuments: ['Aadhaar Card', 'PAN Card', 'Address proof', 'Photographs', 'Nomination form'],
+    withdrawalRules: [
+      'Lock-in: 1 year — no withdrawal in first year',
+      'After 1 year but before 3 years: 2% of principal deducted as penalty',
+      'After 3 years but before 5 years: 1% of principal deducted as penalty',
+      'Maturity: After 5 years — full principal returned',
+      'Can reinvest at maturity for another 5-year term',
+      'On death of holder: Account can be closed and principal returned to nominee',
+    ],
+    taxImplications: {
+      contribution: 'No deduction under Section 80C',
+      interest: 'Monthly interest is taxable as per income slab. TDS deducted if interest > ₹40,000/year (₹50,000 for seniors)',
+      maturity: 'Principal returned — not taxable',
+      regime: 'both',
+    },
+    faqs: [
+      {
+        question: 'How much monthly income will I get from POMIS?',
+        answer:
+          'At 7.4% annual interest, a ₹9 lakh investment gives approximately ₹5,550/month. A ₹15 lakh joint account gives approximately ₹9,250/month.',
+      },
+      {
+        question: 'Can I open a joint POMIS account?',
+        answer:
+          'Yes, up to 3 adults can open a joint POMIS account with a maximum deposit of ₹15 lakhs. Each holder\'s share is equal.',
+      },
+      {
+        question: 'What happens if I don\'t withdraw the monthly interest?',
+        answer:
+          'The interest is credited to your linked post office savings account. It does not earn any additional interest if left uncollected.',
+      },
+    ],
+    officialPortalUrl: 'https://www.indiapost.gov.in',
+    lastUpdated: '2025-01-15',
+  },
+  {
+    id: 'nps-vatsalya',
+    name: 'NPS Vatsalya',
+    nameHindi: 'एनपीएस वात्सल्य',
+    fullName: 'NPS Vatsalya (National Pension System for Minors)',
+    tagline: 'Build a retirement corpus for your child from day one',
+    icon: 'Baby',
+    color: '#0EA5E9',
+    interestRate: {
+      current: 9,
+      asOf: 'Market-linked (8-10% historical average)',
+      historical: [
+        { year: '2024-25', rate: 9 },
+      ],
+    },
+    minInvestment: 1000,
+    maxInvestment: null,
+    lockInYears: 0,
+    maturityYears: null,
+    riskLevel: 'moderate',
+    taxBenefit: 'EET',
+    section80CLimit: 50000,
+    eligibility: {
+      minAge: 0,
+      maxAge: 18,
+      residency: 'indian-citizen',
+      gender: 'any',
+      category: 'Any minor (0-18 years) — parent/guardian opens the account',
+    },
+    description:
+      'NPS Vatsalya, launched in October 2024, is an extension of the National Pension System for minors. Parents or guardians can open an NPS account for their child, which automatically converts to a regular NPS account when the child turns 18. It offers market-linked returns through the same professional fund managers as regular NPS.',
+    benefits: [
+      'Start building retirement corpus early — power of compounding over decades',
+      'Tax deduction up to ₹50,000 under Section 80CCD(1B)',
+      'Same fund managers and investment options as regular NPS',
+      'Seamless conversion to regular NPS at age 18',
+      'Choice of asset allocation (Equity, Corporate Bonds, Govt Securities)',
+      'Partial withdrawal allowed for education and medical emergencies',
+      'Very low fund management charges',
+    ],
+    howToOpen: [
+      'Visit eNPS portal (enps.nsdl.com) or any Point of Presence (PoP)',
+      'Parent/guardian must have an existing NPS account (or open one)',
+      'Complete e-KYC for minor using Aadhaar or birth certificate',
+      'Choose fund manager and asset allocation',
+      'Make minimum contribution of ₹1,000 per year',
+      'PRAN is generated for the minor',
+    ],
+    requiredDocuments: ["Minor's birth certificate or Aadhaar", "Parent/Guardian's Aadhaar & PAN", "Parent/Guardian's NPS PRAN", 'Bank account details', 'Photograph of minor'],
+    withdrawalRules: [
+      'Account continues until child turns 18 — then converts to regular NPS',
+      'At 18: Child takes over the account as regular NPS subscriber',
+      'Partial withdrawal: Up to 25% of contributions for education or medical emergency (max 3 times before 18)',
+      'On death of minor: Entire corpus returned to guardian/nominee',
+      'No exit before 18 except partial withdrawal for specified purposes',
+    ],
+    taxImplications: {
+      contribution: 'Deductible up to ₹50,000 under Section 80CCD(1B) for parent/guardian',
+      interest: 'Not taxed during accumulation',
+      maturity: 'Follows regular NPS rules after conversion at age 18',
+      regime: 'both',
+    },
+    faqs: [
+      {
+        question: 'What happens when my child turns 18?',
+        answer:
+          'The NPS Vatsalya account automatically converts to a regular NPS Tier I account. Your child becomes the account holder and can continue contributing independently.',
+      },
+      {
+        question: 'Can I choose the asset allocation for my child\'s NPS Vatsalya?',
+        answer:
+          'Yes, you can choose Active Choice (manually allocate between Equity, Corporate Bonds, and Government Securities) or Auto Choice (lifecycle-based allocation).',
+      },
+      {
+        question: 'Is NPS Vatsalya different from regular NPS?',
+        answer:
+          'NPS Vatsalya is specifically for minors (0-18 years) and is opened by parents/guardians. It uses the same fund managers and investment framework as regular NPS but has different withdrawal rules until the child turns 18.',
+      },
+    ],
+    officialPortalUrl: 'https://enps.nsdl.com',
+    lastUpdated: '2025-01-15',
+  },
 ]
 
 export function getSchemeById(id: string): Scheme | undefined {

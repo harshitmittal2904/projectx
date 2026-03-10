@@ -14,9 +14,9 @@ const riskFilters: { label: string; value: RiskLevel | 'all' }[] = [
 ]
 
 const riskBadge: Record<RiskLevel, { label: string; className: string }> = {
-  low: { label: 'Low Risk', className: 'bg-sage/10 text-sage' },
-  moderate: { label: 'Moderate', className: 'bg-saffron/10 text-saffron-dark' },
-  'market-linked': { label: 'Market-Linked', className: 'bg-blue-500/10 text-blue-600' },
+  low: { label: 'Low Risk', className: 'bg-sage/10 text-sage dark:text-sage-light' },
+  moderate: { label: 'Moderate', className: 'bg-saffron/10 text-saffron-dark dark:text-saffron' },
+  'market-linked': { label: 'Market-Linked', className: 'bg-blue-500/10 text-blue-600 dark:text-blue-400' },
 }
 
 export function SchemesPage() {
@@ -25,20 +25,20 @@ export function SchemesPage() {
   const filtered = riskFilter === 'all' ? schemes : schemes.filter(s => s.riskLevel === riskFilter)
 
   return (
-    <div className="p-6 md:p-8 min-h-screen">
+    <div className="p-4 md:p-8 min-h-screen">
       <PageHeader title="Government Schemes" description="Explore all Indian government savings and pension schemes." />
 
-      {/* Filters */}
-      <div className="flex gap-2 mb-6 flex-wrap">
+      {/* Filters - horizontal scroll on mobile */}
+      <div className="flex gap-2 mb-6 overflow-x-auto pb-1 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
         {riskFilters.map(f => (
           <button
             key={f.value}
             onClick={() => setRiskFilter(f.value)}
             className={cn(
-              'px-4 py-2 rounded-full text-sm font-medium transition-colors',
+              'px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap shrink-0',
               riskFilter === f.value
-                ? 'bg-navy text-white dark:bg-saffron dark:text-navy'
-                : 'bg-white dark:bg-midnight-card text-navy/60 dark:text-white/50 border border-navy/10 dark:border-midnight-border hover:border-navy/30'
+                ? 'bg-navy text-white dark:bg-saffron dark:text-navy shadow-sm'
+                : 'bg-white dark:bg-midnight-card text-navy/60 dark:text-white/50 border border-navy/10 dark:border-midnight-border hover:border-navy/30 dark:hover:border-white/20 active:scale-95'
             )}
           >
             {f.label}
@@ -47,23 +47,23 @@ export function SchemesPage() {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
         {filtered.map((scheme, i) => (
           <Link
             key={scheme.id}
             to={`/schemes/${scheme.id}`}
-            className={`card-hover animate-fade-in-up stagger-${Math.min(i + 1, 6)} group p-5 rounded-2xl bg-white dark:bg-midnight-card border border-navy/5 dark:border-midnight-border`}
+            className={`card-hover animate-fade-in-up stagger-${Math.min(i + 1, 6)} group p-4 md:p-5 rounded-2xl bg-white dark:bg-midnight-card border border-navy/5 dark:border-midnight-border`}
           >
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-3">
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-bold"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-bold shrink-0"
                   style={{ backgroundColor: scheme.color }}
                 >
                   {scheme.name}
                 </div>
-                <div>
-                  <div className="font-heading font-semibold text-navy dark:text-white">{scheme.fullName}</div>
+                <div className="min-w-0">
+                  <div className="font-heading font-semibold text-navy dark:text-white truncate">{scheme.fullName}</div>
                   <div className="text-xs text-navy/40 dark:text-white/30">{scheme.nameHindi}</div>
                 </div>
               </div>
@@ -73,7 +73,7 @@ export function SchemesPage() {
               {scheme.tagline}
             </p>
 
-            <div className="flex items-center gap-3 text-xs mb-4 flex-wrap">
+            <div className="flex items-center gap-2 md:gap-3 text-xs mb-4 flex-wrap">
               <span className={cn('px-2 py-1 rounded-full font-medium', riskBadge[scheme.riskLevel].className)}>
                 {riskBadge[scheme.riskLevel].label}
               </span>
@@ -97,7 +97,7 @@ export function SchemesPage() {
               )}
             </div>
 
-            <div className="flex items-center text-sm font-medium text-saffron-dark dark:text-saffron group-hover:gap-2 transition-all gap-1">
+            <div className="flex items-center text-sm font-medium text-saffron-dark dark:text-saffron group-hover:gap-2 transition-all duration-200 gap-1">
               Learn more <ArrowRight className="w-4 h-4" />
             </div>
           </Link>

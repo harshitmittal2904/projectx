@@ -13,7 +13,7 @@ const navItems = [
 
 export function MobileNav() {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-midnight-card border-t border-navy/10 dark:border-midnight-border px-1 pb-[env(safe-area-inset-bottom)]">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-midnight-card/95 backdrop-blur-lg border-t border-navy/10 dark:border-midnight-border px-1 pb-[max(env(safe-area-inset-bottom),8px)] pt-1">
       <div className="flex justify-around">
         {navItems.map(({ to, icon: Icon, label }) => (
           <NavLink
@@ -22,15 +22,25 @@ export function MobileNav() {
             end={to === '/'}
             className={({ isActive }) =>
               cn(
-                'flex flex-col items-center gap-0.5 py-2 px-2 text-[10px] font-medium min-w-[44px] min-h-[44px] justify-center',
+                'nav-tap relative flex flex-col items-center gap-0.5 py-2 px-2 text-[10px] font-medium min-w-[44px] min-h-[44px] justify-center rounded-xl transition-all duration-200',
                 isActive
                   ? 'text-saffron-dark dark:text-saffron'
-                  : 'text-navy/40 dark:text-white/40'
+                  : 'text-navy/40 dark:text-white/40 active:bg-navy/5 dark:active:bg-white/5'
               )
             }
           >
-            <Icon className="w-5 h-5" />
-            <span>{label}</span>
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <span className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-saffron" />
+                )}
+                <Icon className={cn(
+                  'w-5 h-5 transition-transform duration-200',
+                  isActive && 'scale-110'
+                )} />
+                <span>{label}</span>
+              </>
+            )}
           </NavLink>
         ))}
       </div>

@@ -1,4 +1,4 @@
-export type SchemeId = 'nps' | 'ppf' | 'epf' | 'ssy' | 'scss' | 'apy' | 'nsc' | 'sgb'
+export type SchemeId = 'nps' | 'ppf' | 'epf' | 'ssy' | 'scss' | 'apy' | 'nsc' | 'sgb' | 'kvp' | 'pomis' | 'nps-vatsalya'
 
 export type RiskLevel = 'low' | 'moderate' | 'market-linked'
 
