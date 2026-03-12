@@ -11,7 +11,7 @@ function genId() {
 export function useChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [isSlow, setIsSlow] = useState(false)
 
   const sendMessage = useCallback(async (content: string) => {
     const userMessage: ChatMessage = {
@@ -30,7 +30,7 @@ export function useChat() {
 
     setMessages(prev => [...prev, userMessage, assistantMessage])
     setIsLoading(true)
-    setError(null)
+    setIsSlow(false)
 
     const allMessages = [...messages, userMessage]
     const apiMessages = formatMessagesForAPI(allMessages)
@@ -40,6 +40,7 @@ export function useChat() {
       apiMessages,
       systemPrompt,
       (chunk) => {
+        setIsSlow(false)
         setMessages(prev => {
           const updated = [...prev]
           const last = updated[updated.length - 1]
@@ -51,24 +52,20 @@ export function useChat() {
       },
       () => {
         setIsLoading(false)
+        setIsSlow(false)
       },
-      (errMsg) => {
-        setError(errMsg)
+      () => {
+        // Error callback — should never fire now since chat-api handles all errors with fallbacks
+        // But just in case, gracefully handle it
         setIsLoading(false)
-        setMessages(prev => {
-          const updated = [...prev]
-          const last = updated[updated.length - 1]
-          if (last.role === 'assistant' && last.content === '') {
-            updated[updated.length - 1] = {
-              ...last,
-              content: 'Sorry, I encountered an error. Please try again.',
-            }
-          }
-          return updated
-        })
-      }
+        setIsSlow(false)
+      },
+      () => {
+        // Slow response callback
+        setIsSlow(true)
+      },
     )
   }, [messages])
 
-  return { messages, isLoading, error, sendMessage }
+  return { messages, isLoading, isSlow, sendMessage }
 }

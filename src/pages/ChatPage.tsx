@@ -7,7 +7,7 @@ import { ChatInput } from '@/components/chat/ChatInput'
 import { SuggestedChips } from '@/components/chat/SuggestedChips'
 
 export function ChatPage() {
-  const { messages, isLoading, error, sendMessage } = useChat()
+  const { messages, isLoading, isSlow, sendMessage } = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [searchParams, setSearchParams] = useSearchParams()
@@ -48,11 +48,11 @@ export function ChatPage() {
       >
         {messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center max-w-md mx-auto px-4">
-            <div className="w-16 h-16 rounded-full bg-saffron/10 flex items-center justify-center mb-4">
-              <MessageCircle className="w-8 h-8 text-saffron" />
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-navy to-navy-light dark:from-saffron dark:to-saffron-dark flex items-center justify-center mb-4">
+              <MessageCircle className="w-8 h-8 text-white" />
             </div>
             <h2 className="font-heading text-xl font-bold text-navy dark:text-white mb-2">
-              NidhiSetu AI Assistant
+              SchemeWise AI Assistant
             </h2>
             <p className="text-sm text-navy/50 dark:text-white/40 mb-6">
               Ask me anything about NPS, PPF, EPF, tax savings, scheme comparisons, or investment guidance.
@@ -72,10 +72,17 @@ export function ChatPage() {
                   </div>
                 </div>
                 <div className="px-4 py-3 rounded-2xl rounded-bl-md bg-white dark:bg-midnight-card border border-navy/5 dark:border-midnight-border">
-                  <div className="flex gap-1">
-                    <span className="w-2 h-2 rounded-full bg-navy/20 dark:bg-white/20 animate-bounce [animation-delay:0ms]" />
-                    <span className="w-2 h-2 rounded-full bg-navy/20 dark:bg-white/20 animate-bounce [animation-delay:150ms]" />
-                    <span className="w-2 h-2 rounded-full bg-navy/20 dark:bg-white/20 animate-bounce [animation-delay:300ms]" />
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1">
+                      <span className="w-2 h-2 rounded-full bg-navy/20 dark:bg-white/20 animate-bounce [animation-delay:0ms]" />
+                      <span className="w-2 h-2 rounded-full bg-navy/20 dark:bg-white/20 animate-bounce [animation-delay:150ms]" />
+                      <span className="w-2 h-2 rounded-full bg-navy/20 dark:bg-white/20 animate-bounce [animation-delay:300ms]" />
+                    </div>
+                    {isSlow && (
+                      <span className="text-xs text-navy/30 dark:text-white/25 ml-2 animate-fade-in-up">
+                        Taking longer than usual...
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -94,13 +101,6 @@ export function ChatPage() {
           >
             <ArrowDown className="w-4 h-4 text-navy/60 dark:text-white/50" />
           </button>
-        </div>
-      )}
-
-      {/* Error */}
-      {error && (
-        <div className="mx-4 md:mx-8 mb-2 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 text-sm text-red-600 dark:text-red-400">
-          {error}
         </div>
       )}
 

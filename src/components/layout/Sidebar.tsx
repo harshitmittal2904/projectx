@@ -11,6 +11,7 @@ import {
   UserCheck,
   BookOpen,
   FileCheck,
+  ArrowDownToLine,
 } from 'lucide-react'
 import { Logo } from './Logo'
 import { ThemeToggle } from './ThemeToggle'
@@ -22,6 +23,7 @@ const navItems = [
   { to: '/schemes', icon: Landmark, label: 'Schemes' },
   { to: '/compare', icon: GitCompareArrows, label: 'Compare' },
   { to: '/calculators', icon: Calculator, label: 'Calculators' },
+  { to: '/withdrawal-guides', icon: ArrowDownToLine, label: 'Withdrawals' },
   { to: '/troubleshoot', icon: LifeBuoy, label: 'Troubleshoot' },
   { to: '/eligibility', icon: UserCheck, label: 'Eligibility' },
   { to: '/glossary', icon: BookOpen, label: 'Glossary' },

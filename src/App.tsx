@@ -13,6 +13,7 @@ const TroubleshootPage = lazy(() => import('@/pages/TroubleshootPage').then(m =>
 const EligibilityPage = lazy(() => import('@/pages/EligibilityPage').then(m => ({ default: m.EligibilityPage })))
 const GlossaryPage = lazy(() => import('@/pages/GlossaryPage').then(m => ({ default: m.GlossaryPage })))
 const DocumentsPage = lazy(() => import('@/pages/DocumentsPage').then(m => ({ default: m.DocumentsPage })))
+const WithdrawalGuidesPage = lazy(() => import('@/pages/WithdrawalGuidesPage').then(m => ({ default: m.WithdrawalGuidesPage })))
 
 function PageLoadingFallback() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="/eligibility" element={<EligibilityPage />} />
             <Route path="/glossary" element={<GlossaryPage />} />
             <Route path="/documents" element={<DocumentsPage />} />
+            <Route path="/withdrawal-guides" element={<WithdrawalGuidesPage />} />
             </Route>
           </Routes>
         </Suspense>

@@ -5,13 +5,13 @@ type Theme = 'light' | 'dark'
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
-    const stored = localStorage.getItem('nidhisetu-theme')
+    const stored = localStorage.getItem('schemewise-theme')
     return (stored === 'dark' ? 'dark' : 'light') satisfies Theme
   })
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
-    localStorage.setItem('nidhisetu-theme', theme)
+    localStorage.setItem('schemewise-theme', theme)
   }, [theme])
 
   const toggleTheme = () => setTheme(t => (t === 'light' ? 'dark' : 'light'))

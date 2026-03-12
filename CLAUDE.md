@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-NidhiSetu ("Bridge to Wealth") — an AI-powered React web application that helps Indian citizens understand, invest in, and manage government savings/pension schemes (NPS, PPF, EPF, SSY, SCSS, APY, NSC, SGBs).
+SchemeWise — an AI-powered React web application that helps Indian citizens understand, invest in, and manage government savings/pension schemes (NPS, PPF, EPF, SSY, SCSS, APY, NSC, SGBs, KVP, POMIS, NPS Vatsalya).
 
 ## Commands
 
